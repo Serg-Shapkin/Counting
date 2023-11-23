@@ -3,6 +3,7 @@ package consulting.counting;
 import consulting.counting.controller.Controller;
 import consulting.counting.exception.InvalidTextException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,8 +20,8 @@ class Tests {
     private Controller controller;
 
 
-    @org.junit.jupiter.api.Test
-    @DisplayName("Тест calculate")
+    @Test
+    @DisplayName("Проверка подсчета количества символов в строке")
     public void testCalculate() {
         String text = "abc";
 
@@ -30,9 +31,10 @@ class Tests {
         map.put('c', 1);
 
         assertEquals(controller.calculate(text), map);
+        assertEquals(text.length(), map.size());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("Исключение при пустой строке")
     public void shouldThrowExceptionEmptyString() {
         String text = "";
@@ -45,7 +47,7 @@ class Tests {
         assertEquals("Передана пустая строка или строка состоит из пробелов", exception.getMessage());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("Исключение при строке из пробелов")
     public void shouldThrowExceptionStringOfSpaces() {
         String text = "     ";
